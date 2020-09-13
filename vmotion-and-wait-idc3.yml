@@ -1,6 +1,6 @@
 ---
 - name: VMOTION AND WAIT IDC3
-  hosts: dom3-idc3-storage-monitoring
+  hosts: 203.151.236.103
   gather_facts: no
   vars:
     host_inventory: ["10.100.10.182","10.100.10.183","10.100.10.184","10.100.10.185","10.100.10.186","10.100.10.188"]
@@ -71,7 +71,7 @@
       delegate_to: localhost
       register: vm
     - debug: var=vm.running_host
-    - name: CREATING FILE   
+    - name: CREATING FILE
       file:
         path: //home/user01/running_host_{{ vm.running_host }}
         state: touch
