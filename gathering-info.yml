@@ -1,16 +1,18 @@
 ---
 - hosts: localhost
   name: Gathering Facts
-
+  vars:
+    hostname: 10.20.33.210
   tasks:
   - name: "Collecting NetApp Information"
     na_ontap_info:
       state: info
       hostname: "{{ hostname }}"
-      username: "{{ ansible_env.ANSIBLE_NET_USERNAME }}"
-      password: "{{ ansible_env.ANSIBLE_NET_PASSWORD }}"
+      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       https: yes
       validate_certs: false
+      gather_subset: ontap_version
     register: ontap_info
   - debug:
       msg: "{{ ontap_info }}"
