@@ -1,5 +1,5 @@
 ---
-- hosts: 10.20.170.70
+- hosts: localhost
   name: Gathering Facts
 
   tasks:
