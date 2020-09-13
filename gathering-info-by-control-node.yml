@@ -1,0 +1,17 @@
+---
+- hosts: 10.20.170.70
+  name: Gathering Facts
+  var_files:
+    /home/knot/ansible-vault/ontap_password.yml
+  tasks:
+  - name: "Collecting NetApp Information"
+    na_ontap_info:
+      state: info
+      hostname: "{{ hostname }}"
+      username: ansible
+      password: "{{ ontap_password }}"
+      https: yes
+      validate_certs: false
+    register: ontap_info
+  - debug:
+      msg: "{{ ontap_info }}"
