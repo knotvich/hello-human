@@ -10,9 +10,9 @@
 
     - name: VMOTION RANDOMLY ###################
       vmware_vmotion:
-        hostname: 10.100.10.10
-        username: '{{ dom3_vcenter_username }}'
-        password: '{{ dom3_vcenter_password }}'
+        hostname: '{{ ansible_env.VMWARE_HOST }}'
+        username: '{{ ansible_env.VMWARE_USER }}'
+        password: '{{ ansible_env.VMWARE_PASSWORD }}'
         validate_certs: no
         vm_name: 'dom3-idc3-storage-monitoring'
         destination_host: '{{ host_inventory[0] | join }}'
@@ -36,9 +36,9 @@
 
     - name: VMOTION RANDOMLY ###################
       vmware_vmotion:
-        hostname: 10.100.10.10
-        username: '{{ dom3_vcenter_username }}'
-        password: '{{ dom3_vcenter_password }}'
+        hostname: '{{ ansible_env.VMWARE_HOST }}'
+        username: '{{ ansible_env.VMWARE_USER }}'
+        password: '{{ ansible_env.VMWARE_PASSWORD }}'
         validate_certs: no
         vm_name: 'dom3-idc3-storage-monitoring'
         destination_host: '{{ host_inventory[1] | join }}'
@@ -62,9 +62,9 @@
 
     - name: VMOTION RANDOMLY ###################
       vmware_vmotion:
-        hostname: 10.100.10.10
-        username: '{{ dom3_vcenter_username }}'
-        password: '{{ dom3_vcenter_password }}'
+        hostname: '{{ ansible_env.VMWARE_HOST }}'
+        username: '{{ ansible_env.VMWARE_USER }}'
+        password: '{{ ansible_env.VMWARE_PASSWORD }}'
         validate_certs: no
         vm_name: 'dom3-idc3-storage-monitoring'
         destination_host: '{{ host_inventory[2] | join }}'
