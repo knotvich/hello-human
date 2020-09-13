@@ -1,0 +1,87 @@
+---
+- name: VMOTION AND WAIT IDC3
+  hosts: dom3-idc3-storage-monitoring
+  gather_facts: no
+  vars:
+    host_inventory: ["10.100.10.182","10.100.10.183","10.100.10.184","10.100.10.185","10.100.10.186","10.100.10.188"]
+  tasks:
+    - name: HOST INVENTORY
+      debug: var=host_inventory
+
+    - name: VMOTION RANDOMLY ###################
+      vmware_vmotion:
+        hostname: 10.100.10.10
+        username: '{{ dom3_vcenter_username }}'
+        password: '{{ dom3_vcenter_password }}'
+        validate_certs: no
+        vm_name: 'dom3-idc3-storage-monitoring'
+        destination_host: '{{ host_inventory[0] | join }}'
+      delegate_to: localhost
+      register: vm
+    - debug: var=vm.running_host
+    - name: CREATING FILE
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: touch
+        mode: u+rw,g+rw,o+r
+    - name: WAIT FOR GENERATING IOP TASK COMPLETION
+      wait_for:
+        path: //home/user01/scan_start
+        search_regex: done_for_{{ vm.running_host }}
+    - name: REMOVING FILE
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: absent
+        mode: u+rw,g+rw,o+r
+
+    - name: VMOTION RANDOMLY ###################
+      vmware_vmotion:
+        hostname: 10.100.10.10
+        username: '{{ dom3_vcenter_username }}'
+        password: '{{ dom3_vcenter_password }}'
+        validate_certs: no
+        vm_name: 'dom3-idc3-storage-monitoring'
+        destination_host: '{{ host_inventory[1] | join }}'
+      delegate_to: localhost
+      register: vm
+    - debug: var=vm.running_host
+    - name: CREATING FILE
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: touch
+        mode: u+rw,g+rw,o+r
+    - name: WAIT FOR GENERATING IOP TASK COMPLETION
+      wait_for:
+        path: //home/user01/scan_start
+        search_regex: done_for_{{ vm.running_host }}
+    - name: REMOVING FILE
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: absent
+        mode: u+rw,g+rw,o+r
+
+    - name: VMOTION RANDOMLY ###################
+      vmware_vmotion:
+        hostname: 10.100.10.10
+        username: '{{ dom3_vcenter_username }}'
+        password: '{{ dom3_vcenter_password }}'
+        validate_certs: no
+        vm_name: 'dom3-idc3-storage-monitoring'
+        destination_host: '{{ host_inventory[2] | join }}'
+      delegate_to: localhost
+      register: vm
+    - debug: var=vm.running_host
+    - name: CREATING FILE   
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: touch
+        mode: u+rw,g+rw,o+r
+    - name: WAIT FOR GENERATING IOP TASK COMPLETION
+      wait_for:
+        path: //home/user01/scan_start
+        search_regex: done_for_{{ vm.running_host }}
+    - name: REMOVING FILE
+      file:
+        path: //home/user01/running_host_{{ vm.running_host }}
+        state: absent
+        mode: u+rw,g+rw,o+r
