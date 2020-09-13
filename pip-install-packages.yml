@@ -3,6 +3,6 @@
   name: Install Python packages in AWX
 
   tasks:
-    pip:
+    - pip:
       name: netapp-lib
       umask: "0022"
