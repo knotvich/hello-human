@@ -4,5 +4,6 @@
 
   tasks:
     - pip:
-      name: netapp-lib
-      umask: "0022"
+        name: netapp-lib
+        umask: "0022"
+        virtualenv: /var/lib/awx/venv/ansible
