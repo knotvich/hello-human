@@ -1,11 +1,6 @@
 ---
-- hosts: localhost
+- hosts: 10.20.170.70
   name: Gathering Facts
-
-#   vars_prompt:
-#   - name: "hostname"
-#     prompt: "Cluster "
-#     private: no
 
   tasks:
   - name: "Collecting NetApp Information"
