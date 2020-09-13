@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  name: Install Python packages in AWX
+
+  tasks:
+    pip:
+      name: netapp-lib
+      umask: "0022"
