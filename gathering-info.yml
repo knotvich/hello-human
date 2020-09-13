@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  name: Gathering Facts
+
+  vars_prompt:
+  - name: "hostname"
+    prompt: "Cluster "
+    private: no
+  - name: "gather_subset"
+    prompt: "Subset: "
+    private: no
+  vars_files:
+    ../secret/ontap_password.yml
+  tasks:
+  - name: "Collecting NetApp Information"
+    na_ontap_info:
+      state: info
+      hostname: "{{ hostname }}"
+      username: ansible
+      password: "{{ ontap_password }}"
+      https: yes
+      validate_certs: false
+      gather_subset: "{{ gather_subset }}"
+    register: ontap_info
+  - debug:
+      msg: "{{ ontap_info }}"
