@@ -1,15 +1,14 @@
 ---
 - hosts: ansible
   name: Gathering Facts
-  vars_files:
-    /Users/knot/automation/ontap/secret/ontap_password.yml
+
   tasks:
   - name: "Collecting NetApp Information"
     na_ontap_info:
       state: info
       hostname: "{{ hostname }}"
-      username: ansible
-      password: "{{ ontap_password }}"
+      username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
+      password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
       https: yes
       validate_certs: false
     register: ontap_info

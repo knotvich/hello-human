@@ -1,5 +1,5 @@
 ---
-- hosts: 127.0.0.1
+- hosts: localhost
   name: Gathering Facts
   vars:
     hostname: 10.20.33.210
