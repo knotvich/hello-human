@@ -1,5 +1,5 @@
 ---
-- hosts: ansible
+- hosts: Control
   name: Gathering Facts
 
   tasks:
