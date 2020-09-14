@@ -1,5 +1,5 @@
 ---
-- hosts: Control
+- hosts: 10.20.170.70
   name: Gathering Facts
 
   tasks:
