@@ -1,5 +1,5 @@
 ---
-- hosts: 10.20.170.70
+- hosts: control
   name: Gathering Facts
 
   tasks:
@@ -9,8 +9,9 @@
       hostname: "{{ hostname }}"
       username: '{{ lookup("env", "ANSIBLE_NET_USERNAME") }}'
       password: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'
-      https: yes
+      https: ye
       validate_certs: false
+      gather_subset: ontap_version
     register: ontap_info
   - debug:
       msg: "{{ ontap_info }}"
