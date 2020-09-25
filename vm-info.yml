@@ -7,8 +7,8 @@
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
   tasks:
-    - name: Retreiving VM Information
-      vmware_vmotion:
+    - name: Retreiving Virtual Machine Information
+      vmware_vm_info:
         hostname: '{{ hostname }}'
         username: '{{ username }}'
         password: '{{ password }}'
