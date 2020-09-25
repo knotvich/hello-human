@@ -10,7 +10,7 @@
   tasks:
     - name: HOST INVENTORY
       debug: var=host_inventory
-s
+
     - name: HOST VMOTION
       vmware_vmotion:
         hostname: '{{ hostname }}'
