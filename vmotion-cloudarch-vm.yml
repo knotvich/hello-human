@@ -6,11 +6,7 @@
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-    host_inventory: ["10.100.10.182","10.100.10.183","10.100.10.184","10.100.10.185","10.100.10.186","10.100.10.188"]
   tasks:
-    - name: HOST INVENTORY
-      debug: var=host_inventory
-
     - name: HOST VMOTION
       vmware_vmotion:
         hostname: '{{ hostname }}'
