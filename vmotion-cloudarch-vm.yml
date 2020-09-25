@@ -6,7 +6,6 @@
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
-    destination_host: 10.100.10.185
   tasks:
     - name: CHECK VC
       debug:
