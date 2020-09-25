@@ -14,8 +14,7 @@
         password: '{{ password }}'
         validate_certs: no
         folder: "/VC65.inet.local/vm/INTERNAL-OPCLOUD/STORAGE-MONITOR"
-        vm_name: 'dom3-idc3-storage-monitoring'
         destination_host: '{{ destination_host }}'
       delegate_to: localhost
-      register: vm
-    - debug: var=vm.running_host
+      register: vm_info
+    - debug: var=vm_info
