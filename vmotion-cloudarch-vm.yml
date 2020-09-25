@@ -1,15 +1,16 @@
 ---
 - name: VMOTION IDC3 VM
-  hosts: 203.151.236.103
+  hosts: localhost
   gather_facts: no
   vars:
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+    destination_host: 10.100.10.185
   tasks:
     - name: CHECK VC
       debug:
-        msg: "VC: {{ VMWARE_HOST }}"
+        msg: "VC: {{ hostname }}"
     - name: HOST VMOTION
       vmware_vmotion:
         hostname: '{{ hostname }}'
