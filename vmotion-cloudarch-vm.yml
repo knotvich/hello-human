@@ -1,12 +1,15 @@
 ---
-- name: VMOTION CLOUD ARCH VM
-  hosts: localhost
+- name: VMOTION IDC3 VM
+  hosts: 203.151.236.103
   gather_facts: no
   vars:
     hostname: '{{ lookup("env", "VMWARE_HOST") }}'
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
   tasks:
+    - name: CHECK VC
+      debug:
+        msg: "VC: {{ VMWARE_HOST }}"
     - name: HOST VMOTION
       vmware_vmotion:
         hostname: '{{ hostname }}'
