@@ -1,5 +1,5 @@
 ---
-- name: VMOTION IDC3 VM
+- name: VMOTION
   hosts: localhost
   gather_facts: no
   vars:
@@ -7,16 +7,13 @@
     username: '{{ lookup("env", "VMWARE_USER") }}'
     password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
   tasks:
-    - name: CHECK VC
-      debug:
-        msg: "VC: {{ hostname }}"
     - name: HOST VMOTION
       vmware_vmotion:
         hostname: '{{ hostname }}'
         username: '{{ username }}'
         password: '{{ password }}'
         validate_certs: no
-        vm_name: 'dom3-idc3-storage-monitoring'
+        vm_name: '{{ vm_name }}'
         destination_host: '{{ destination_host }}'
       delegate_to: localhost
       register: vm
