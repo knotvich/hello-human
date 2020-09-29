@@ -1,0 +1,20 @@
+---
+- name: VMOTION
+  hosts: localhost
+  gather_facts: no
+  vars:
+    hostname: '{{ lookup("env", "VMWARE_HOST") }}'
+    username: '{{ lookup("env", "VMWARE_USER") }}'
+    password: '{{ lookup("env", "VMWARE_PASSWORD") }}'
+  tasks:
+    - name: HOST VMOTION
+      vmware_vmotion:
+        hostname: '{{ hostname }}'
+        username: '{{ username }}'
+        password: '{{ password }}'
+        validate_certs: no
+        vm_name: '{{ vm_name }}'
+        destination_host: '{{ destination_host }}'
+      delegate_to: localhost
+      register: vm
+    - debug: var=vm.running_host
